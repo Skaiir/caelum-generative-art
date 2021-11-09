@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@100;200;400&family=Tangerine:wght@400;700&display=swap');
+
+$lessdarkmauve: rgba(85, 49, 84, 0.035);
+$darkmauve: rgb(3, 2, 3);
+$redish: rgb(141, 27, 77);
+$goldish: rgb(255, 225, 168);
+$dark-goldish: rgba(223, 194, 139, 0.364);
+$darker-goldish: rgba(223, 194, 139, 0.138);
+
+* {
+  margin: 0;
+  border: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: white;
+}
+
+body {
+  font-family: 'Bitter', serif;
+  background-color: $darkmauve;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin: 100px;
+  position: relative;
+  h1 {
+    font-size: 100px;
+    position: relative;
+    color: $redish;
+  }
+
+  .light-circle {
+    background-color: $goldish;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -30px;
+    left: -21px;
+  }
+
+  .dark-circle {
+    background-color: $darkmauve;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -25px;
+    left: -19px;
+  }
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 90%;
+
+  .piece {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 410px;
+    height: 410px;
+    background-color: $lessdarkmauve;
+    transition: all 0.5s;
+  }
+
+  .piece-selected {
+    width: 420px;
+    height: 420px;
+    margin: -5px;
+    background-color: transparent;
+  }
+}
+
+.stylized {
+  font-family: 'Tangerine', cursive;
+}
