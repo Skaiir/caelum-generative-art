@@ -17,7 +17,7 @@ export default class Links {
   }
 
   static createRenderer(canvas) {
-    return new Links(canvas, 300, 40, 0.03, 0.02, 0.35)
+    return new Links(canvas, 350, 60, 0.03, 0.02, 0.5)
   }
 
   renderStep() {
@@ -29,7 +29,8 @@ export default class Links {
       proximityColorStyle(
         this.maxDist,
         colorSets.redBlue.min,
-        colorSets.redBlue.max
+        colorSets.redBlue.max,
+        (x) => x ** 3
       )
     )
     this.particleSet.step()
