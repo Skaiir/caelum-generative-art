@@ -1,6 +1,10 @@
 import { RecursiveShapes } from '../logic/recursiveShapes'
 import { Vector2 } from '../logic/vectors'
-import { renderProximityLines } from '../renderers/proximityLineRenderer'
+import {
+  paintPointConnections,
+  proximityColorStyle,
+  colorSets,
+} from '../renderers/connectPointsPainter'
 
 export default class Squares {
   constructor(canvas, size, maxDist) {
@@ -20,15 +24,21 @@ export default class Squares {
   }
 
   static createRenderer(canvas) {
-    return new Squares(canvas, 400, 0.4)
+    return new Squares(canvas, 400, 0.3)
   }
 
   renderStep() {
-    renderProximityLines(
+    paintPointConnections(
       this.canvas,
       this.ctx,
       [...this.particleSet.getPoints()],
-      this.maxDist
+      (pa, pb) => Vector2.distanceBetween(pa, pb) < this.maxDist,
+      proximityColorStyle(
+        this.maxDist,
+        colorSets.redYellow.min,
+        colorSets.redYellow.max,
+        (x) => x ** 2
+      )
     )
     this.particleSet.step()
   }

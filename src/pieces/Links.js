@@ -1,5 +1,10 @@
 import { BouncyParticleSet } from '../logic/bouncyParticleSet'
-import { renderProximityLines } from '../renderers/proximityLineRenderer'
+import {
+  paintPointConnections,
+  colorSets,
+  proximityColorStyle,
+} from '../renderers/connectPointsPainter'
+import { Vector2 } from '../logic/vectors'
 
 export default class Links {
   constructor(canvas, size, count, minSpeed, maxSpeed, maxDist) {
@@ -12,15 +17,20 @@ export default class Links {
   }
 
   static createRenderer(canvas) {
-    return new Links(canvas, 300, 30, 0.03, 0.02, 0.35)
+    return new Links(canvas, 300, 40, 0.03, 0.02, 0.35)
   }
 
   renderStep() {
-    renderProximityLines(
+    paintPointConnections(
       this.canvas,
       this.ctx,
       this.particleSet.particles.map((p) => p.pos),
-      this.maxDist
+      (pa, pb) => Vector2.distanceBetween(pa, pb) < this.maxDist,
+      proximityColorStyle(
+        this.maxDist,
+        colorSets.redBlue.min,
+        colorSets.redBlue.max
+      )
     )
     this.particleSet.step()
   }
