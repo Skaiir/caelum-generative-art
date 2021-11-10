@@ -43,7 +43,7 @@ const Piece = ({
   useEffect(() => {
     renderer.current = createRenderer(canvas.current)
     renderer.current.renderStep(1 / frameRate)
-  }, [])
+  }, [createRenderer, frameRate])
 
   useEffect(() => {
     if (isSelected) {
