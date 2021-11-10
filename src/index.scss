@@ -2,8 +2,10 @@
 
 $lessdarkmauve: rgba(85, 49, 84, 0.035);
 $darkmauve: rgb(3, 2, 3);
+$transparentredish: rgba(141, 27, 76, 0.049);
 $redish: rgb(141, 27, 77);
 $goldish: rgb(255, 225, 168);
+$transparentgoldish: rgba(255, 225, 168, 0.193);
 $dark-goldish: rgba(223, 194, 139, 0.364);
 $darker-goldish: rgba(223, 194, 139, 0.138);
 
@@ -78,15 +80,31 @@ body {
     justify-content: center;
     width: 410px;
     height: 410px;
-    background-color: $lessdarkmauve;
-    transition: all 0.5s;
   }
 
-  .piece-selected {
-    width: 420px;
-    height: 420px;
-    margin: -5px;
-    background-color: transparent;
+  .piece-title {
+    text-align: center;
+    margin: 10px;
+    color: wheat;
+    transition: all 0.2s;
+  }
+
+  .piece-title-selected {
+    color: $redish;
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+  }
+
+  .underline {
+    margin: auto;
+    width: 0px;
+    height: 2px;
+    background: transparent;
+    transition: all;
+  }
+
+  .underline-selected {
+    background: white;
   }
 }
 

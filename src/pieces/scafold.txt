@@ -1,0 +1,11 @@
+export default class ClassName {
+  constructor(canvas, params) {
+  }
+
+  static createRenderer(canvas) {
+    return new ClassName(canvas, params)
+  }
+
+  renderStep() {
+  }
+}

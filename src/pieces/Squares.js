@@ -23,6 +23,8 @@ export default class Squares {
     )
   }
 
+  static title = 'Clockwork'
+
   static createRenderer(canvas) {
     return new Squares(canvas, 400, 0.3)
   }

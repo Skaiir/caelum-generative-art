@@ -16,6 +16,7 @@ const App = () => {
           return (
             <Piece
               createRenderer={x.createRenderer}
+              title={x.title}
               id={i}
               isSelected={selected === i}
               setSelected={setSelected}
@@ -28,15 +29,26 @@ const App = () => {
   )
 }
 
-// TODO framerate independance via deltaTime
-const Piece = ({ createRenderer, id, isSelected, setSelected, frameRate }) => {
+const Piece = ({
+  createRenderer,
+  title,
+  id,
+  isSelected,
+  setSelected,
+  frameRate,
+}) => {
   const canvas = useRef()
+  const renderer = useRef()
 
   useEffect(() => {
-    if (isSelected && createRenderer) {
-      const renderer = createRenderer(canvas.current)
+    renderer.current = createRenderer(canvas.current)
+    renderer.current.renderStep(1 / frameRate)
+  }, [])
+
+  useEffect(() => {
+    if (isSelected) {
       const intervalToken = setInterval(
-        () => renderer.renderStep(1 / frameRate),
+        () => renderer.current.renderStep(1 / frameRate),
         1000 / frameRate
       )
       return () => clearInterval(intervalToken)
@@ -45,15 +57,24 @@ const Piece = ({ createRenderer, id, isSelected, setSelected, frameRate }) => {
 
   return (
     <>
-      <div
-        className={isSelected ? 'piece piece-selected' : 'piece'}
-        onClick={() => setSelected(id)}
-      >
-        {isSelected ? (
-          <canvas ref={canvas} className='canvas' />
-        ) : (
-          <img className='preview' alt='digital art'></img>
-        )}
+      <div>
+        <div className='piece' onClick={() => setSelected(id)}>
+          {<canvas ref={canvas} className='canvas' />}
+        </div>
+        <div>
+          <h2
+            className={
+              isSelected ? 'piece-title piece-title-selected' : 'piece-title'
+            }
+          >
+            {title}
+          </h2>
+          <div
+            className={
+              isSelected ? 'underline underline-selected' : 'underline'
+            }
+          />
+        </div>
       </div>
     </>
   )

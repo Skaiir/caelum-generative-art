@@ -16,6 +16,8 @@ export default class Links {
     this.particleSet = new BouncyParticleSet(count, minSpeed, maxSpeed)
   }
 
+  static title = 'Links'
+
   static createRenderer(canvas) {
     return new Links(canvas, 350, 60, 0.03, 0.02, 0.5)
   }
